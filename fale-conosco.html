@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Formulário de Contato</title>
+   
+
+</head>
+<body>
+
+    <div class="container">
+
+        <h2>Formulário de Contato</h2>
+        <form id="contactForm">
+            <div class="form-group">
+                <label for="nome">Nome Completo *</label>
+                <input class="textinput" type="text" id="nome" name="nome" required>
+                <span class="error" id="errorNome"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="matricula">Matrícula *</label>
+                <input type="text" id="matricula" name="matricula" required>
+                <span class="error" id="errorMatricula"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="estatus">Estatus *</label>
+                <select class="status" id="estatus" name="estatus" required>
+                    <option value="">Selecione uma opção</option>
+                    <option value="Ativo">Servidor Ativo</option>
+                    <option value="Inativo">Servidor Comissionado</option>
+                    <option value="Inativo">Servidor Aposentado</option>
+                    <option value="Inativo">Pensionista</option>
+                </select>
+                <span class="error" id="errorEstatus"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Seu E-mail *</label>
+                <input type="email" id="email" name="email" required>
+                <span class="error" id="errorEmail"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="servico">Serviço *</label>
+                <select class="status" id="servico" name="servico" required>
+                    <option value="">Selecione o serviço desejado</option>
+                    <option value="Suporte Técnico">Solicitação ao atendimento</option>
+                    <option value="Financeiro">Mensagem à presidência</option>
+                    <option value="Outros">Elogios sobre o serviço</option>
+                    <option value="Outros">Denúncia à ouvidoria</option>
+                    <option value="Outros">Reclamação de Serviços</option>
+                    <option value="Outros">Sugestão para Melhorias</option>
+                </select>
+                <span class="error" id="errorServico"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="mensagem">Mensagem *</label>
+                <textarea id="mensagem" name="mensagem" rows="5" required></textarea>
+                <span class="error" id="errorMensagem"></span>
+            </div>
+
+            <div class="button-container">
+                <button type="submit" class="btn">Enviar</button>
+                <button type="button" class="btn btn-clear" id="clearBtn">Limpar</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Validação do formulário
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            let isValid = true;
+
+            // Validação básica de cada campo
+            if (!document.getElementById('nome').value) {
+                isValid = false;
+                document.getElementById('errorNome').textContent = 'Por favor, preencha o nome completo.';
+            } else {
+                document.getElementById('errorNome').textContent = '';
+            }
+
+            if (!document.getElementById('matricula').value) {
+                isValid = false;
+                document.getElementById('errorMatricula').textContent = 'Por favor, preencha a matrícula.';
+            } else {
+                document.getElementById('errorMatricula').textContent = '';
+            }
+
+            if (!document.getElementById('estatus').value) {
+                isValid = false;
+                document.getElementById('errorEstatus').textContent = 'Por favor, selecione o estatus.';
+            } else {
+                document.getElementById('errorEstatus').textContent = '';
+            }
+
+            if (!document.getElementById('email').value) {
+                isValid = false;
+                document.getElementById('errorEmail').textContent = 'Por favor, preencha o e-mail.';
+            } else {
+                document.getElementById('errorEmail').textContent = '';
+            }
+
+            if (!document.getElementById('servico').value) {
+                isValid = false;
+                document.getElementById('errorServico').textContent = 'Por favor, selecione o serviço.';
+            } else {
+                document.getElementById('errorServico').textContent = '';
+            }
+
+            if (!document.getElementById('mensagem').value) {
+                isValid = false;
+                document.getElementById('errorMensagem').textContent = 'Por favor, preencha a mensagem.';
+            } else {
+                document.getElementById('errorMensagem').textContent = '';
+            }
+
+            if (!isValid) {
+                event.preventDefault(); // Impede o envio do formulário se houver erros
+            }
+        });
+
+        // Botão de Limpar
+        document.getElementById('clearBtn').addEventListener('click', function() {
+            document.getElementById('contactForm').reset(); // Limpa todos os campos do formulário
+            // Limpa todas as mensagens de erro
+            document.getElementById('errorNome').textContent = '';
+            document.getElementById('errorMatricula').textContent = '';
+            document.getElementById('errorEstatus').textContent = '';
+            document.getElementById('errorEmail').textContent = '';
+            document.getElementById('errorServico').textContent = '';
+            document.getElementById('errorMensagem').textContent = '';
+        });
+    </script>
+
+</body>
+</html>
